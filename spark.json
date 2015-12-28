@@ -1,0 +1,7 @@
+{
+  "name": "conrad_rsl_switch",
+  "author": "Carsten Lueck df3xc@web.de",
+  "license": "MIT",
+  "version": "0.0.2",
+  "description": "control Conrad RSL switch by AM 433MHz radio transmitter"
+}
