@@ -39,6 +39,8 @@ Ein neue Datei mit den Funkktionen setup() und loop() erstellen.
 #define BLYNK_PRINT Serial
 #include <time.h>
 #include "blynk/BlynkSimpleParticle.h"
+#include "rsl_switch/rsl_switch.h"
+
 
 
 // Ersetze "..." mit dem Token aus der Email
