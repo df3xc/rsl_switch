@@ -11,7 +11,7 @@ Author : Dein grosser Bruder in Stuttgart
 --------------------------------------------------------------------*/
 
 #include "application.h"
-#include "conrad_rsl_switch/conrad_rsl_switch.h"
+#include "rsl_switch/rsl_switch.h"
 
 // Timings for Conrad Electronic Radio Wall Switch
 #define ST    430   // short duration 500 usec

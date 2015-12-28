@@ -38,7 +38,7 @@ Ein neue Datei mit den Funkktionen setup() und loop() erstellen.
 
 #define BLYNK_PRINT Serial
 #include <time.h>
-#include "BlynkSimpleParticle.h"
+#include "blynk/BlynkSimpleParticle.h"
 
 
 // Ersetze "..." mit dem Token aus der Email
