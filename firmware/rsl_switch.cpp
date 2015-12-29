@@ -42,17 +42,17 @@ CONRAD RSL toggle transmitter control using the given data array
   void conrad_rsl_transmit (int* code)
 
   {
-	   int rep;
-	   int i;
+	int rep;
+	int i;
 
-		 digitalWrite(dpin,LOW);
-	   delayMicroseconds(5000);
+	 digitalWrite(dpin,LOW);
+	 delayMicroseconds(5000);
 
-		 digitalWrite(dpin,LOW);
-	   delayMicroseconds(5000);
+	 digitalWrite(dpin,LOW);
+	 delayMicroseconds(5000);
 
-		 digitalWrite(dpin,LOW);
-	   delayMicroseconds(5000);
+	 digitalWrite(dpin,LOW);
+	 delayMicroseconds(5000);
 
 	   // repeat sending the entire control data sequence
 
@@ -60,20 +60,20 @@ CONRAD RSL toggle transmitter control using the given data array
 		 {
 			 // send the bits from data array
 
-			 for (i=0; i < code[0]; i = i+4)
-			 {
+		 for (i=0; i < code[0]; i = i+4)
+		 {
 			   digitalWrite(dpin,HIGH);
 			   delayMicroseconds(code[i+1]);
-				 digitalWrite(dpin,LOW);
+			   digitalWrite(dpin,LOW);
 			   delayMicroseconds(code[i+2]);
-
+	
 			   digitalWrite(dpin,HIGH);
 			   delayMicroseconds(code[i+3]);
 			   digitalWrite(dpin,LOW);
 			   delayMicroseconds(code[i+4]);
-			 }
+		 }
 
-    // for RSL switch
+    		// for RSL switch
 		digitalWrite(dpin,HIGH);
 		delayMicroseconds(ST);
 
@@ -82,7 +82,7 @@ CONRAD RSL toggle transmitter control using the given data array
 		digitalWrite(dpin,LOW);
 		delayMicroseconds(8000);
   	}
-		digitalWrite(dpin,LOW);
+	digitalWrite(dpin,LOW); // IMPORTANT : Switch transmitter OFF
   }
 
   /*--------------------------------------------------------------------
@@ -99,7 +99,7 @@ CONRAD RSL toggle transmitter control using the given data array
   	int k = 1;
     int tx_code[70];  // speicher tx code sequenz
 
-  	tx_code[0]=64;   // die lönge des tx codess
+  	tx_code[0]=64;   // die lÃ¶nge des tx codess
 
   	for(i=0; i<32; i++)
   	{
@@ -124,7 +124,7 @@ CONRAD RSL toggle transmitter control using the given data array
 
   Die Codessequenzen (z.B. "10011001000001001100000011010111" ) wurden
   mit einem Arduino aufgezeichnet.
-  Dazu wird der 433hz Empfänger an den Arduino angeschlossen.
+  Dazu wird der 433hz EmpfÃ¤nger an den Arduino angeschlossen.
 
   Youtube: https://www.youtube.com/watch?v=9JBkpcDb5wI
 
