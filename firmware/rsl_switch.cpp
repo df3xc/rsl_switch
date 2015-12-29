@@ -42,8 +42,8 @@ CONRAD RSL toggle transmitter control using the given data array
   void conrad_rsl_transmit (int* code)
 
   {
-	   int rep;
-	   int i;
+	int rep;
+	int i;
 
 	 digitalWrite(dpin,LOW);
 	 delayMicroseconds(5000);
@@ -60,18 +60,18 @@ CONRAD RSL toggle transmitter control using the given data array
 		 {
 			 // send the bits from data array
 
-			 for (i=0; i < code[0]; i = i+4)
-			 {
+		 for (i=0; i < code[0]; i = i+4)
+		 {
 			   digitalWrite(dpin,HIGH);
 			   delayMicroseconds(code[i+1]);
 			   digitalWrite(dpin,LOW);
 			   delayMicroseconds(code[i+2]);
-
+	
 			   digitalWrite(dpin,HIGH);
 			   delayMicroseconds(code[i+3]);
 			   digitalWrite(dpin,LOW);
 			   delayMicroseconds(code[i+4]);
-			 }
+		 }
 
     		// for RSL switch
 		digitalWrite(dpin,HIGH);
