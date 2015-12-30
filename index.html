@@ -89,6 +89,24 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 int dpin = D1;
 </code></pre>
 
+<p>Der CODE zum steuern einer Funk Dose, hier ein Beispiel:</p>
+
+<pre><code>void conrad_rsl_switch ( int which, int state )
+{
+ char es[34];  // code als Zeichenfolge
+ memset(es,0,34);
+
+ if (which==1)
+  {
+    if (state==EIN)  strncpy(es,"00001110011001001011010000000000",32);
+    if (state==AUS)  strncpy(es,"00000001011001001011010000000000",32);
+    Serial.print("Sende Code : ");
+    Serial.println(es);
+    conrad_rsl_send(es,430,1150);
+  }
+}
+</code></pre>
+
 <h1>
 <a id="viel-spaß" class="anchor" href="#viel-spa%C3%9F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viel Spaß</h1>
 
