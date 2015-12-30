@@ -26,6 +26,12 @@
 
 <p>Ein Conrad RSL Switch ist eine per Funk gesteuerte Steckdose. (siehe <a href="http://www.conrad.de">www.conrad.de</a>)</p>
 
+<p>Bestell Nummer : 526917 - 62</p>
+
+<p>Es sind nicht die billigsten Dosen. Dafür haben sie aber auch bessere Eigenschaften.</p>
+
+<p>Cool sind auch die sehr kleinen 2-Phasen Schalter : Bestell Nummer  : 640553 - 62 </p>
+
 <h1>
 <a id="voraussetzungen" class="anchor" href="#voraussetzungen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Voraussetzungen</h1>
 
@@ -59,9 +65,15 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 <h1>
 <a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h1>
 
-<p><img src="http://df3xc.github.io/rsl_switch/pictures/tranmsitter.JPG" alt=""></p>
+<p><img src="http://df3xc.github.io/rsl_switch/pictures/transmitter.PNG" alt=""></p>
 
 <p>Folgende Verbindungen zwischen dem Particle Photon und dem AM Transmitter herstellen</p>
+
+<ul>
+<li>ATAD and Photon pin D1</li>
+<li>GND an Photon pin GND</li>
+<li>VCC an Photon pin VIN</li>
+</ul>
 
 <h1>
 <a id="blync-app-auf-dem-smartphone" class="anchor" href="#blync-app-auf-dem-smartphone" aria-hidden="true"><span class="octicon octicon-link"></span></a>BLYNC APP auf dem Smartphone</h1>
@@ -69,6 +81,51 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 <p>Buttons hinzufügen und mit den virtuellen Pins verbinden.</p>
 
 <p>LEDs hinzufügen und mit den virtuellen Pins verbinden.</p>
+
+<p><img src="http://df3xc.github.io/rsl_switch/pictures/blynk.PNG" alt=""></p>
+
+<h1>
+<a id="code-review" class="anchor" href="#code-review" aria-hidden="true"><span class="octicon octicon-link"></span></a>CODE review</h1>
+
+<p>Der pin ATAD wird in rsl_switch.cpp bestimmt.</p>
+
+<pre><code>// mit diesem Pin wird der sender gesteuert.
+// this pin is used to control the RF transmitter
+
+int dpin = D1;
+</code></pre>
+
+<p>Der CODE zum steuern einer Funk Dose, hier ein Beispiel:</p>
+
+<pre><code>void conrad_rsl_switch ( int which, int state )
+{
+ char es[34];  // code als Zeichenfolge
+ memset(es,0,34);
+
+ if (which==1)
+  {
+    if (state==EIN)  strncpy(es,"00001110011001001011010000000000",32);
+    if (state==AUS)  strncpy(es,"00000001011001001011010000000000",32);
+    Serial.print("Sende Code : ");
+    Serial.println(es);
+    conrad_rsl_send(es,430,1150);
+  }
+}
+</code></pre>
+
+<p>Ein Beispiel für die Funktion wenn Button 1 gedrückt wurde:</p>
+
+<pre><code>// Verbinde auf der BLYNC APP den Button mit Virtual pin 1
+BLYNK_WRITE(V1)
+{
+    if (param.asInt() == 1) // Schalter nieder gedrückt ?
+    {
+      println(" rsl dose 1 ein ");
+      conrad_rsl_switch(DOSE1,1);
+      Blynk.virtualWrite(V11,255);  // V11 ist eine BLYNC APP LED
+    }
+}
+</code></pre>
 
 <h1>
 <a id="viel-spaß" class="anchor" href="#viel-spa%C3%9F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viel Spaß</h1>
