@@ -9,7 +9,7 @@ Radio controlled switch: order code 526917 - 62
 
 Anleitung / Tutorial : http://df3xc.github.io/rsl_switch/
 
-Dieses GitHub ist meinem kleinem Bruder gewidmet.
+Dieses GitHub Repository ist meinem kleinem Bruder gewidmet.
 
 This page is deidicated to my little brother
                                         
