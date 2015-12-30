@@ -107,6 +107,20 @@ int dpin = D1;
 }
 </code></pre>
 
+<p>Ein Beispiel für die Funktion wenn Button 1 gedrückt wurde:</p>
+
+<pre><code>// Verbinde auf der BLYNC APP den Button mit Virtual pin 1
+BLYNK_WRITE(V1)
+{
+    if (param.asInt() == 1) // Schalter nieder gedrückt ?
+    {
+      println(" rsl dose 1 ein ");
+      conrad_rsl_switch(DOSE1,1);
+      Blynk.virtualWrite(V11,255);  // V11 ist eine BLYNC APP LED
+    }
+}
+</code></pre>
+
 <h1>
 <a id="viel-spaß" class="anchor" href="#viel-spa%C3%9F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viel Spaß</h1>
 
