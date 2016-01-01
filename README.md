@@ -11,7 +11,8 @@ Anleitung / Tutorial : http://df3xc.github.io/rsl_switch/
 
 Dieses GitHub Repository ist meinem kleinem Bruder gewidmet.
 
-This page is deidicated to my little brother
+This project is dedicated to my little brother
+            
                                         
                                     
 
