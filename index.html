@@ -75,6 +75,8 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 <li>VCC an Photon pin VIN</li>
 </ul>
 
+<p><img src="http://df3xc.github.io/rsl_switch/pictures/breadboard.PNG" alt=""></p>
+
 <h1>
 <a id="blync-app-auf-dem-smartphone" class="anchor" href="#blync-app-auf-dem-smartphone" aria-hidden="true"><span class="octicon octicon-link"></span></a>BLYNC APP auf dem Smartphone</h1>
 
@@ -126,6 +128,47 @@ BLYNK_WRITE(V1)
     }
 }
 </code></pre>
+
+<h1>
+<a id="codes-aufzeichnen" class="anchor" href="#codes-aufzeichnen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Codes aufzeichnen</h1>
+
+<p>Im Auslieferungszustand besitzen die Funk Dosen noch keine Code Sequenz, mit denen sie geschaltet werden. Sie lernen den Code indem man sie mit der Fernsteuerung anlernt. 
+Nachdem die Funk Dose die Code Sequenz der Fernsteuerung gelernt hat, müssen wir die Code Sequenz in der Datei …cpp eintragen.
+Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM433MHz Empfänger abhören.</p>
+
+<h1>
+<a id="software" class="anchor" href="#software" aria-hidden="true"><span class="octicon octicon-link"></span></a>Software</h1>
+
+<p>In der Particle IDE die Library <strong>RCSWITCH</strong> suchen.</p>
+
+<p>Die Datei <strong>RECEIVEDEMO_ADVANCED.INO</strong> auswählen</p>
+
+<p>USE THIS EXAMPLE anklicken</p>
+
+<p>Ergebnis : Eine APP mit dem Namen <strong>RECEIVEDDEMO_ADVANCED</strong> wird erstellt.</p>
+
+<h1>
+<a id="hardware-1" class="anchor" href="#hardware-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h1>
+
+<p>Folgende Verbindungen zwischen dem AM433MHz Empfänger und dem Particle Photon herstellen:</p>
+
+<ul>
+<li>DATA an Photon pin D3</li>
+<li>GND an Photon pin GND</li>
+<li>VCC and Photon pin VIN</li>
+<li>USB des Photons mit einem USB Anschluss am Computer verbinden. Dadurch erhält man Zugang zur seriellen Schnittstelle des Photons.</li>
+</ul>
+
+<h1>
+<a id="codes-aufzeichnen-1" class="anchor" href="#codes-aufzeichnen-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Codes aufzeichnen</h1>
+
+<p>Das Programm auf den Photon flashen.</p>
+
+<p>Ein Terminal Program mit der seriellen Schnittstelle verbinden.</p>
+
+<p>Auf der Fernbedienung einen Taster drücken. Auf der Terminal wird der Code angezeigt.</p>
+
+<p>Diesen Code in die Datei rsl_switch übertragen.</p>
 
 <h1>
 <a id="viel-spaß" class="anchor" href="#viel-spa%C3%9F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viel Spaß</h1>
