@@ -20,7 +20,7 @@
 
     <section class="main-content">
       <h1>
-<a id="hallo-" class="anchor" href="#hallo-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hallo !</h1>
+<a id="hallo" class="anchor" href="#hallo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hallo</h1>
 
 <p>Hier möchte ich zeigen wie man einen Conrad RSL Switch mit dem Photon Particle steuert.</p>
 
@@ -99,6 +99,9 @@ int dpin = D1;
 
 <p>Der CODE zum steuern einer Funk Dose, hier ein Beispiel:</p>
 
+<p>"00001110011001001011010000000000" ist ein Code den eine RSL Fernsteuerung sendet.
+Die Anführungsstriche bedeuten, dass es sich um eine Zeichenfolge handelt und nicht um ein Zahl.</p>
+
 <pre><code>void conrad_rsl_switch ( int which, int state )
 {
  char es[34];  // code als Zeichenfolge
@@ -171,6 +174,14 @@ Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM433MHz Empf�
 <p>Diesen Code in die Datei rsl_switch übertragen.</p>
 
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/TeratermCode.PNG" alt=""></p>
+
+<h1>
+<a id="ein-besserer-am-433-mhz-transmitter" class="anchor" href="#ein-besserer-am-433-mhz-transmitter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ein besserer AM 433 MHz Transmitter</h1>
+
+<p>Ich werde den AM Transmitter der Firma Aurel , Modell TX-SAW MID/5 V AM Sendemodule 433,92 MHz Baustein ausprobieren.
+Der Grund : Dieses Sendemodule besitzt eine EC Konformitätserklärung. Das bedeutet, dass der Hersteller einige Tests durchführen lies und dies auch nachweisen kann.</p>
+
+<p>Conrad Bestell Nummer : 191525 - 62  </p>
 
 <h1>
 <a id="viel-spaß" class="anchor" href="#viel-spa%C3%9F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viel Spaß</h1>
