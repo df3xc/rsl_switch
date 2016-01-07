@@ -18,5 +18,6 @@ Author : Dein grosser Bruder in Stuttgart
 
 extern void conrad_rsl_init();
 extern void conrad_rsl_switch ( int which, int state );
+extern void conrad_rsl_switch_code ( int which, int state );
 
 #endif
