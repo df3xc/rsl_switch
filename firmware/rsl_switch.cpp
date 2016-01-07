@@ -5,9 +5,11 @@ Getestet mit einem Particle Photon am 21.12.2015
 
 Der Datenpin des 433MHz Senders wird mit dpin verbunden
 
-Author : Dein grosser Bruder in Stuttgart
+Copyright : Carsten Lueck, df3xc@web.de
 
 --------------------------------------------------------------------*/
+
+#define PHOTON // die Hardware ist ein Particle Photon
 
 
 #ifdef PHOTON
@@ -185,11 +187,12 @@ The next value sets transmitter pin HIGH
 
   CONRAD RSL Schalter "which" ein- oder ausschalten
 
-  Die Codessequenzen (z.B. "10011001000001001100000011010111" ) wurden
-  mit einem Arduino aufgezeichnet.
-  Dazu wird der 433hz Empfänger an den Arduino angeschlossen.
+  which : Die Nummer der Dose, die Du festlegts
+  state : 0 = dose ausschalten. 1 = dose einschalten
 
-  Youtube: https://www.youtube.com/watch?v=9JBkpcDb5wI
+  Die Codessequenzen (z.B. "10011001000001001100000011010111" ) wurden
+  zuvor aufgezeichnet.
+  Dazu wird der 433hz Empfänger angeschlossen.
 
   ------------------------------------------------------------------------------*/
 
@@ -200,24 +203,29 @@ The next value sets transmitter pin HIGH
     memset(es,0,34);
 
     switch (which) {
-     case 1:
+     case 1: // schalter in nord deutschland
        if (state==EIN)  strncpy(es,"00001110011001001011010000000000",32);
        if (state==AUS)  strncpy(es,"00000001011001001011010000000000",32);
        break;
        
-     case 2:
+     case 2: // schalter in nord deutschland
        if (state==EIN)  strncpy(es,"00100110011001001011010000000000",32);
        if (state==AUS)  strncpy(es,"00101110011001001011010000000000",32);
        break;
 
-     case 3:
+     case 3: // schalter in nord deutschland
        if (state==EIN)  strncpy(es,"00010110011001001011010000000000",32);
        if (state==AUS)  strncpy(es,"00011110011001001011010000000000",32);
        break;
 
-     case 4:
+     case 4: // schalter in sued deutschland
        if (state==EIN)  strncpy(es,"00011001000001001100000011010111",32);
        if (state==AUS)  strncpy(es,"00010101000001001100000011010111",32);
+       break;
+
+     case 5: // schalter in sued deutschland
+       if (state==EIN)  strncpy(es,"00000101000001001100000011010111",32);
+       if (state==AUS)  strncpy(es,"00001101000001001100000011010111",32);
        break;
        
      default: 
@@ -231,11 +239,26 @@ The next value sets transmitter pin HIGH
   }
 
 
-  // left on   : Decimal: 419741911 (32Bit) Binary: 00011001000001001100000011010111
-  // left off  : Decimal: 352633047 (32Bit) Binary: 00010101000001001100000011010111
+ /*------------------------------------------------------------------------------
 
-  // right on  : Decimal:  84197591 (32Bit) Binary: 00000101000001001100000011010111
-  // right off : Decimal: 218415319 (32Bit) Binary: 00001101000001001100000011010111
+  CONRAD RSL Schalter "which" ein- oder ausschalten
+
+  which : Die Nummer der Dose, die Du festlegts
+  state : 0 = dose ausschalten. 1 = dose einschalten
+
+  Die Codes als Dezimalzahl (z.B. 241480704 ) wurden
+  zuvor aufgezeichnet.
+  Dazu wird der 433hz Empfänger angeschlossen.
+
+
+  which = 4,  on   : Decimal: 419741911 (32Bit) Binary: 00011001000001001100000011010111
+  which = 4, off   : Decimal: 352633047 (32Bit) Binary: 00010101000001001100000011010111
+ 
+  which = 5,  on   : Decimal:  84197591 (32Bit) Binary: 00000101000001001100000011010111
+  which = 5,  off  : Decimal: 218415319 (32Bit) Binary: 00001101000001001100000011010111
+
+  ------------------------------------------------------------------------------*/
+
   
 
   void conrad_rsl_switch_code ( int which, int state )
@@ -244,14 +267,30 @@ The next value sets transmitter pin HIGH
     unsigned long code = 0;
 
     switch (which) {
-     case 4:
+
+    case 1: // schalter in nord deutschland
+       if (state==EIN) code = 241480704; 
+       if (state==AUS) code = 23376896; 
+       break;
+
+    case 2: // schalter in nord deutschland
+       if (state==EIN) code = 322066944;
+       if (state==AUS) code = 778351616; 
+       break;
+
+    case 3: // schalter in nord deutschland
+       if (state==EIN) code = 375698432; 
+       if (state==AUS) code = 509916160; 
+       break;
+
+     case 4: // schalter in sued deutschland
        if (state==EIN) code = 419741911; 
        if (state==AUS) code = 352633047; 
        break;
 
-     case 5:
-       if (state==EIN) code =84197591;
-       if (state==AUS) code =218415319; 
+     case 5: // schalter in sued deutschland
+       if (state==EIN) code = 84197591;
+       if (state==AUS) code = 218415319; 
        break;       
 
      default: 

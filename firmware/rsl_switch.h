@@ -3,7 +3,11 @@
 Sammlung von Funktionen um einen Conrad RSL FunkSchalter zu schalten
 
 Getestet mit einem Particle Photon am 21.12.2015
-Author : Dein grosser Bruder in Stuttgart
+
+Der Datenpin des 433MHz Senders wird mit dpin verbunden
+
+Copyright : Carsten Lueck, df3xc@web.de
+
 --------------------------------------------------------------------*/
 
 #ifndef rsl_init_x
