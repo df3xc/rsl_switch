@@ -110,11 +110,6 @@ int dpin = D1;
 
 <p>Beim starten des Programms muss conrad_rsl_init() aufgerufen werden:</p>
 
-<p>/<em>--------------------------------------------------------
-    Diese Funktion muss einmal von setup() aufgerufen werden
-    call this function once from setup()
-    ---------------------------------------------------------</em>/</p>
-
 <pre><code>void conrad_rsl_init()
 {
    pinMode(dpin,OUTPUT);
@@ -160,6 +155,46 @@ switch (which) {
    Serial.println(es);
    conrad_rsl_send(es,430,1150);
   }</p>
+
+<p>Alternativ kann der Code auch als Dezimal-Zahl angegeben werden:</p>
+
+<p>void conrad_rsl_switch_code ( int which, int state )
+  {</p>
+
+<pre><code>unsigned long code = 0;
+
+switch (which) {
+
+case 1: // schalter 1
+   if (state==EIN) code = 241480704; 
+   if (state==AUS) code = 23376896; 
+   break;
+
+case 2: // schalter 2
+   if (state==EIN) code = 322066944;
+   if (state==AUS) code = 778351616; 
+   break;
+
+ --- snip ---      
+
+ default: 
+   Serial.print(" Fehler : konnte Code nicht finden ");
+   break; 
+}
+
+if (code != 0)
+{
+  Serial.print("Sende Code : ");
+  Serial.println(code);
+  conrad_rsl_send(code,430,1150);
+} 
+else
+{
+  Serial.print(" Fehler : konnte Code nicht finden ");      
+}
+</code></pre>
+
+<p>}</p>
 
 <p>Ein Beispiel für die Funktion wenn Button 1 gedrückt wurde:</p>
 
