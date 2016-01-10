@@ -76,31 +76,27 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/breadboard.PNG" alt=""></p>
 
 <h1>
-<a id="blync-app-auf-dem-smartphone" class="anchor" href="#blync-app-auf-dem-smartphone" aria-hidden="true"><span class="octicon octicon-link"></span></a>BLYNC APP auf dem Smartphone</h1>
-
-<p>Buttons hinzufügen und mit den virtuellen Pins verbinden.</p>
-
-<p>LEDs hinzufügen und mit den virtuellen Pins verbinden.</p>
-
-<p><img src="http://df3xc.github.io/rsl_switch/pictures/blynk.PNG" alt=""></p>
-
-<h1>
 <a id="hardware-option-2-ein-besserer-am-433-mhz-transmitter" class="anchor" href="#hardware-option-2-ein-besserer-am-433-mhz-transmitter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware Option 2 Ein besserer AM 433 MHz Transmitter</h1>
 
 <p>Ich habe den AM Transmitter der Firma Aurel , Modell TX-SAW MID/5 V AM Sendemodule 433,92 MHz Baustein getestet.</p>
 
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/aurel.png" alt=""></p>
 
-<p>Der Grund : Dieses Sendemodule besitzt eine EC Konformitätserklärung. Das bedeutet, dass der Hersteller einige Tests durchführen lies und dies auch nachweisen kann.</p>
+<p>Der Grund : Dieses Sendemodul besitzt eine EC Konformitätserklärung. Das bedeutet, dass der Hersteller einige Tests durchführen lies und dies auch nachweisen kann.</p>
 
-<p>Es gibt ihn als 3V oder 5V Variante. Die 3V Variante kann auch direkt mit einem Raspberry PI verbunden werden.</p>
+<p>Es gibt ihn als 3V oder 5V Variante. Die 3V Variante kann auch direkt mit einem Raspberry PI verbunden werden.
+Der Sender wurde zusammen mit der EC Konformitätserklärung und dem Datenblatt angeliefert.</p>
 
-<p><img src="https://www.google.de/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwjP6fuBwp_KAhUBbhQKHSFYDz0QFggjMAA&amp;url=http%3A%2F%2Fwww.aurelwireless.com%2Fwp-content%2Fuploads%2Fuser-manual%2F650200796G_um.pdf&amp;usg=AFQjCNF8oIp4XMBHHMNnDeTnrkitR1L3xw" alt="Datenblatt"></p>
+<p>Das Datenblatt findet man, wenn man nach AUREL TX-SAW MID sucht.</p>
+
+<p>Als Antenne verwende ich einen 16cm langen Draht in senkrechter Position. Ich konnte eine RSL Funkdose in 15 Meter Entfernung durch 3 Wände schalten.</p>
 
 <p>Conrad Bestell Nummer : 191525 - 62 </p>
 
 <h1>
 <a id="code-review" class="anchor" href="#code-review" aria-hidden="true"><span class="octicon octicon-link"></span></a>CODE review</h1>
+
+<p>Ich stelle hier nur die Funktionen vor, die Du kennen musst. Der ganze Code ist bewusst einfach gehalten und in der Programmiersprache C implementiert.</p>
 
 <p>Der pin ATAD wird in rsl_switch.cpp bestimmt.</p>
 
@@ -209,6 +205,15 @@ BLYNK_WRITE(V1)
 </code></pre>
 
 <h1>
+<a id="blync-app-auf-dem-smartphone" class="anchor" href="#blync-app-auf-dem-smartphone" aria-hidden="true"><span class="octicon octicon-link"></span></a>BLYNC APP auf dem Smartphone</h1>
+
+<p>Buttons hinzufügen und mit den virtuellen Pins verbinden.</p>
+
+<p>LEDs hinzufügen und mit den virtuellen Pins verbinden.</p>
+
+<p><img src="http://df3xc.github.io/rsl_switch/pictures/blynk.PNG" alt=""></p>
+
+<h1>
 <a id="codes-aufzeichnen" class="anchor" href="#codes-aufzeichnen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Codes aufzeichnen</h1>
 
 <p>Im Auslieferungszustand besitzen die Funk Dosen noch keine Code Sequenz, mit denen sie geschaltet werden. Sie lernen den Code indem man sie mit der Fernsteuerung anlernt. 
@@ -223,7 +228,7 @@ Nachdem die Funk Dose die Code Sequenz der Fernsteuerung gelernt hat, müssen wi
 
 <p>Die Datei <strong>RECEIVEDEMO_ADVANCED.INO</strong> auswählen</p>
 
-<p>USE THIS EXAMPLE anklicken</p>
+<p><strong>USE THIS EXAMPLE</strong> anklicken</p>
 
 <p>Ergebnis : Eine APP mit dem Namen <strong>RECEIVEDDEMO_ADVANCED</strong> wird erstellt.</p>
 
@@ -257,10 +262,10 @@ Nachdem die Funk Dose die Code Sequenz der Fernsteuerung gelernt hat, müssen wi
 <h1>
 <a id="weiterführende-literatur" class="anchor" href="#weiterf%C3%BChrende-literatur" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weiterführende Literatur</h1>
 
-<p>Nun hast DU eine Art Funkanalage selber gebaut. </p>
+<p>Nun hast DU eine Art Funkanlage selber gebaut. </p>
 
 <ul>
-<li>Darfst Du (die Person) diese Funkanalage betreiben: Hast Du eine Lizenz?</li>
+<li>Darfst Du (die Person) diese Funkanlage betreiben: Hast Du eine Lizenz?</li>
 <li>Darf die Funkanlage (das Gerät) betrieben werden : Hat das Gerät eine Zulassung?</li>
 </ul>
 
