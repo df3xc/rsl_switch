@@ -63,7 +63,7 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/application_and_libraries.PNG" alt=""></p>
 
 <h1>
-<a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h1>
+<a id="hardware-option-1" class="anchor" href="#hardware-option-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware Option 1</h1>
 
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/transmitter.PNG" alt=""></p>
 
@@ -87,6 +87,17 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/blynk.PNG" alt=""></p>
 
 <h1>
+<a id="hardware-option-2-ein-besserer-am-433-mhz-transmitter" class="anchor" href="#hardware-option-2-ein-besserer-am-433-mhz-transmitter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware Option 2 Ein besserer AM 433 MHz Transmitter</h1>
+
+<p>Ich habe den AM Transmitter der Firma Aurel , Modell TX-SAW MID/5 V AM Sendemodule 433,92 MHz Baustein getestet.</p>
+
+<p>Der Grund : Dieses Sendemodule besitzt eine EC Konformit채tserkl채rung. Das bedeutet, dass der Hersteller einige Tests durchf체hren lies und dies auch nachweisen kann.</p>
+
+<p>Es gibt ihn als 3V oder 5V Variante. Die 3V Variante kann auch direkt mit einem Raspberry PI verbunden werden.</p>
+
+<p>Conrad Bestell Nummer : 191525 - 62 </p>
+
+<h1>
 <a id="code-review" class="anchor" href="#code-review" aria-hidden="true"><span class="octicon octicon-link"></span></a>CODE review</h1>
 
 <p>Der pin ATAD wird in rsl_switch.cpp bestimmt.</p>
@@ -97,26 +108,57 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 int dpin = D1;
 </code></pre>
 
+<p>Beim starten des Programms muss conrad_rsl_init() aufgerufen werden:</p>
+
+<p>/<em>--------------------------------------------------------------------
+Diese Funktion muss einmal von setup() aufgerufen werden
+call this function once from setup()
+--------------------------------------------------------------------</em>/</p>
+
+<p>void conrad_rsl_init()
+{
+  pinMode(dpin,OUTPUT);
+  digitalWrite(dpin,LOW);
+  delay(500);
+}</p>
+
 <p>Der CODE zum steuern einer Funk Dose, hier ein Beispiel:</p>
 
 <p>"00001110011001001011010000000000" ist ein Code den eine RSL Fernsteuerung sendet.
 Die Anf체hrungsstriche bedeuten, dass es sich um eine Zeichenfolge handelt und nicht um ein Zahl.</p>
 
-<pre><code>void conrad_rsl_switch ( int which, int state )
-{
- char es[34];  // code als Zeichenfolge
- memset(es,0,34);
+<p>Der CODE wird in der Funktion conrad_rsl_switch() verwendet.</p>
 
- if (which==1)
+<p>void conrad_rsl_switch ( int which, int state )
   {
-    if (state==EIN)  strncpy(es,"00001110011001001011010000000000",32);
-    if (state==AUS)  strncpy(es,"00000001011001001011010000000000",32);
-    Serial.print("Sende Code : ");
-    Serial.println(es);
-    conrad_rsl_send(es,430,1150);
-  }
-}
+    char es[34];  // code als Zeichenfolge</p>
+
+<pre><code>memset(es,0,34);
+
+switch (which) {
+ case 1: //  schalter nummer 1 
+   if (state==EIN)  strncpy(es,"00001110011001001011010000000000",32);
+   if (state==AUS)  strncpy(es,"00000001011001001011010000000000",32);
+   break;
+
+ --- snip ---
+
+ case 5: // schalter nummer 2
+   if (state==EIN)  strncpy(es,"00000101000001001100000011010111",32);
+   if (state==AUS)  strncpy(es,"00001101000001001100000011010111",32);
+   break;
+
+ default: 
+   Serial.print(" Fehler : konnte Code nicht finden ");
+ break;
 </code></pre>
+
+<p>}</p>
+
+<p>Serial.print("Sende Code : ");
+   Serial.println(es);
+   conrad_rsl_send(es,430,1150);
+  }</p>
 
 <p>Ein Beispiel f체r die Funktion wenn Button 1 gedr체ckt wurde:</p>
 
@@ -151,7 +193,7 @@ Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM433MHz Empf�
 <p>Ergebnis : Eine APP mit dem Namen <strong>RECEIVEDDEMO_ADVANCED</strong> wird erstellt.</p>
 
 <h1>
-<a id="hardware-1" class="anchor" href="#hardware-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h1>
+<a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h1>
 
 <p>Folgende Verbindungen zwischen dem AM433MHz Empf채nger und dem Particle Photon herstellen:</p>
 
@@ -174,14 +216,6 @@ Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM433MHz Empf�
 <p>Diesen Code in die Datei rsl_switch 체bertragen.</p>
 
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/TeratermCode.PNG" alt=""></p>
-
-<h1>
-<a id="ein-besserer-am-433-mhz-transmitter" class="anchor" href="#ein-besserer-am-433-mhz-transmitter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Ein besserer AM 433 MHz Transmitter</h1>
-
-<p>Ich werde den AM Transmitter der Firma Aurel , Modell TX-SAW MID/5 V AM Sendemodule 433,92 MHz Baustein ausprobieren.
-Der Grund : Dieses Sendemodule besitzt eine EC Konformit채tserkl채rung. Das bedeutet, dass der Hersteller einige Tests durchf체hren lies und dies auch nachweisen kann.</p>
-
-<p>Conrad Bestell Nummer : 191525 - 62  </p>
 
 <h1>
 <a id="weiterf체hrende-literatur" class="anchor" href="#weiterf%C3%BChrende-literatur" aria-hidden="true"><span class="octicon octicon-link"></span></a>Weiterf체hrende Literatur</h1>
