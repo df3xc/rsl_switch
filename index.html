@@ -28,8 +28,6 @@
 
 <p>Bestell Nummer : 526917 - 62</p>
 
-<p>Es sind nicht die billigsten Dosen. Daf체r haben sie aber auch bessere Eigenschaften.</p>
-
 <p>Cool sind auch die sehr kleinen 2-Phasen Schalter : Bestell Nummer  : 640553 - 62 </p>
 
 <h1>
@@ -91,6 +89,8 @@ Mit der PARTICLE WEB IDE und der BLYNK Library die blaue LED and D7 ein- und aus
 
 <p>Ich habe den AM Transmitter der Firma Aurel , Modell TX-SAW MID/5 V AM Sendemodule 433,92 MHz Baustein getestet.</p>
 
+<p><img src="http://df3xc.github.io/rsl_switch/pictures/aurel.png" alt=""></p>
+
 <p>Der Grund : Dieses Sendemodule besitzt eine EC Konformit채tserkl채rung. Das bedeutet, dass der Hersteller einige Tests durchf체hren lies und dies auch nachweisen kann.</p>
 
 <p>Es gibt ihn als 3V oder 5V Variante. Die 3V Variante kann auch direkt mit einem Raspberry PI verbunden werden.</p>
@@ -110,11 +110,6 @@ int dpin = D1;
 
 <p>Beim starten des Programms muss conrad_rsl_init() aufgerufen werden:</p>
 
-<p>/<em>--------------------------------------------------------
-    Diese Funktion muss einmal von setup() aufgerufen werden
-    call this function once from setup()
-    ---------------------------------------------------------</em>/</p>
-
 <pre><code>void conrad_rsl_init()
 {
    pinMode(dpin,OUTPUT);
@@ -130,36 +125,72 @@ Die Anf체hrungsstriche bedeuten, dass es sich um eine Zeichenfolge handelt und n
 
 <p>Der CODE wird in der Funktion conrad_rsl_switch() verwendet.</p>
 
-<p>void conrad_rsl_switch ( int which, int state )
-  {
-    char es[34];  // code als Zeichenfolge</p>
+<pre><code> void conrad_rsl_switch ( int which, int state )
+ {
+ char es[34];  // code als Zeichenfolge
+ memset(es,0,34);
 
-<pre><code>memset(es,0,34);
+ switch (which) {
+  case 1: //  schalter nummer 1 
+    if (state==EIN)  strncpy(es,"00001110011001001011010000000000",32);
+    if (state==AUS)  strncpy(es,"00000001011001001011010000000000",32);
+    break;
 
-switch (which) {
- case 1: //  schalter nummer 1 
-   if (state==EIN)  strncpy(es,"00001110011001001011010000000000",32);
-   if (state==AUS)  strncpy(es,"00000001011001001011010000000000",32);
-   break;
+  --- snip ---
 
- --- snip ---
+  case 5: // schalter nummer 2
+    if (state==EIN)  strncpy(es,"00000101000001001100000011010111",32);
+    if (state==AUS)  strncpy(es,"00001101000001001100000011010111",32);
+    break;
 
- case 5: // schalter nummer 2
-   if (state==EIN)  strncpy(es,"00000101000001001100000011010111",32);
-   if (state==AUS)  strncpy(es,"00001101000001001100000011010111",32);
-   break;
+  default: 
+    Serial.print(" Fehler : konnte Code nicht finden ");
+  break;
+}
 
- default: 
-   Serial.print(" Fehler : konnte Code nicht finden ");
- break;
+Serial.print("Sende Code : ");
+Serial.println(es);
+conrad_rsl_send(es,430,1150);
+}
 </code></pre>
 
-<p>}</p>
+<p>Alternativ kann der Code auch als Dezimal-Zahl angegeben werden:</p>
 
-<p>Serial.print("Sende Code : ");
-   Serial.println(es);
-   conrad_rsl_send(es,430,1150);
-  }</p>
+<pre><code> void conrad_rsl_switch_code ( int which, int state )
+ {
+ unsigned long code = 0;
+
+ switch (which) { 
+
+ case 1: // schalter 1
+    if (state==EIN) code = 241480704; 
+    if (state==AUS) code = 23376896; 
+    break;
+
+ case 2: // schalter 2
+    if (state==EIN) code = 322066944;
+    if (state==AUS) code = 778351616; 
+    break;
+
+  --- snip ---      
+
+  default: 
+    Serial.print(" Fehler : konnte Code nicht finden ");
+    break; 
+ }
+
+ if (code != 0)
+ {
+   Serial.print("Sende Code : ");
+   Serial.println(code);
+   conrad_rsl_send(code,430,1150);
+  } 
+  else
+  {
+    Serial.print(" Fehler : konnte Code nicht finden ");      
+  }
+}
+</code></pre>
 
 <p>Ein Beispiel f체r die Funktion wenn Button 1 gedr체ckt wurde:</p>
 
@@ -196,6 +227,8 @@ Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM433MHz Empf�
 <h1>
 <a id="hardware" class="anchor" href="#hardware" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hardware</h1>
 
+<p><img src="http://df3xc.github.io/rsl_switch/pictures/receiver.PNG" alt=""></p>
+
 <p>Folgende Verbindungen zwischen dem AM433MHz Empf채nger und dem Particle Photon herstellen:</p>
 
 <ul>
@@ -210,11 +243,11 @@ Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM433MHz Empf�
 
 <p>Das Programm auf den Photon flashen.</p>
 
-<p>Ein Terminal Program mit der seriellen Schnittstelle verbinden.</p>
+<p>Ein Terminal Program mit der seriellen Schnittstelle des Photon verbinden.</p>
 
 <p>Auf der Fernbedienung einen Taster dr체cken. Auf der Terminal wird der Code angezeigt.</p>
 
-<p>Diesen Code in die Datei rsl_switch 체bertragen.</p>
+<p>Diesen Code in die Datei rsl_switch.cpp 체bertragen.</p>
 
 <p><img src="http://df3xc.github.io/rsl_switch/pictures/TeratermCode.PNG" alt=""></p>
 
