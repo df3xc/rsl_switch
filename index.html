@@ -22,13 +22,25 @@
       <h1>
 <a id="hallo" class="anchor" href="#hallo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hallo</h1>
 
-<p>Hier möchte ich zeigen wie man einen Conrad RSL Switch mit dem Photon Particle steuert.</p>
+<p>Hier möchte ich zeigen wie man einen Conrad RSL Switch mit dem Particle Photon steuert.</p>
 
-<p>Ein Conrad RSL Switch ist eine per Funk gesteuerte Steckdose. (siehe <a href="http://www.conrad.de">www.conrad.de</a>)</p>
+<p>Ein Conrad RSL Switch ist ein per Funk gesteuerter 230V Schalter (siehe <a href="http://www.conrad.de">www.conrad.de</a>)</p>
 
-<p>Bestell Nummer : 526917 - 62</p>
+<p>Was mir an der Conrad RSL Serie gefällt, ist die Vielfältigkeit.</p>
 
-<p>Cool sind auch die sehr kleinen 2-Phasen Schalter : Bestell Nummer  : 640553 - 62 </p>
+<ul>
+<li>Es gibt den Handsender aber auch einen Sender der an die Wand geschraubt werden kann.</li>
+<li>Es gibt die 230V Steckdose aber auch einen funkgesteuerten Schalter für die Unterputz-Montage.</li>
+</ul>
+
+<p>Der gesteuerte Schalter kann von mehr als einer Fernsteuerung gesteuert werden.  </p>
+
+<p>Getestet habe ich folgende RSL typen</p>
+
+<ul>
+<li>Ein Handsender mit 3 gesteuerten Steckdosen : Bestell Nummer : 526917 - 62</li>
+<li>Die sehr kleinen 2-Phasen Schalter : Bestell Nummer  : 640553 - 62 </li>
+</ul>
 
 <h1>
 <a id="voraussetzungen" class="anchor" href="#voraussetzungen" aria-hidden="true"><span class="octicon octicon-link"></span></a>Voraussetzungen</h1>
@@ -219,7 +231,7 @@ BLYNK_WRITE(V1)
 <p>Im Auslieferungszustand besitzen die Funk Dosen noch keine Code Sequenz, mit denen sie geschaltet werden. Sie lernen den Code indem man sie mit der Fernsteuerung anlernt. 
 Nachdem die Funk Dose die Code Sequenz der Fernsteuerung gelernt hat, müssen wir die Code Sequenz in der Datei rsl_switch.cpp eintragen.</p>
 
-<p>Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM433MHz Empfänger abhören.</p>
+<p>Die Code Sequenz erhalten wir, wenn wir die Fernsteuerung mit dem AM 433 MHz Empfänger abhören.</p>
 
 <h1>
 <a id="software" class="anchor" href="#software" aria-hidden="true"><span class="octicon octicon-link"></span></a>Software</h1>
@@ -280,6 +292,17 @@ Nachdem die Funk Dose die Code Sequenz der Fernsteuerung gelernt hat, müssen wi
 <li>Der Einsatz einer Richtantenne ist nicht erlaubt. Das würde dazu führen, das ERP überschritten wird.</li>
 <li>Eine andauernde Sendung durch die SW ist nicht erwünscht, weil es alle anderen Geräte - auch die der lieben Nachbarn - stören kann. Die Geräte benutzen ja alle die gleiche Frequenz.</li>
 </ul>
+
+<h1>
+<a id="moment-mal-" class="anchor" href="#moment-mal-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Moment mal !</h1>
+
+<p>Ganz oben schrieb ich : Der gesteuerte Schalter kann von mehr als einer Fernsteuerung gesteuert werden.  </p>
+
+<p>Wenn Du bereits gültige Codes besitzt, kannst Du die gesteuerten Schalter anlernen,</p>
+
+<p>Dann kannst Du auf den Abschnitt "Codes aufzeichnen" auch verzichten.</p>
+
+<p>Paare deine Schalter mit Deinem Handsender und paare sie mit den Codes des Programms.</p>
 
 <h1>
 <a id="viel-spaß" class="anchor" href="#viel-spa%C3%9F" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viel Spaß</h1>
