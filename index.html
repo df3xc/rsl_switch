@@ -110,17 +110,18 @@ int dpin = D1;
 
 <p>Beim starten des Programms muss conrad_rsl_init() aufgerufen werden:</p>
 
-<p>/<em>--------------------------------------------------------------------
-Diese Funktion muss einmal von setup() aufgerufen werden
-call this function once from setup()
---------------------------------------------------------------------</em>/</p>
+<p>/<em>--------------------------------------------------------
+    Diese Funktion muss einmal von setup() aufgerufen werden
+    call this function once from setup()
+    ---------------------------------------------------------</em>/</p>
 
-<p>void conrad_rsl_init()
+<pre><code>void conrad_rsl_init()
 {
-  pinMode(dpin,OUTPUT);
-  digitalWrite(dpin,LOW);
-  delay(500);
-}</p>
+   pinMode(dpin,OUTPUT);
+   digitalWrite(dpin,LOW);
+   delay(500);
+}
+</code></pre>
 
 <p>Der CODE zum steuern einer Funk Dose, hier ein Beispiel:</p>
 
