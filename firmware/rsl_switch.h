@@ -21,8 +21,8 @@ Copyright : Carsten Lueck, df3xc@web.de
 
 // Funk Dosen 4..5 sind meine Dosen in Sued Deutchland
 
-#define DOSE1 4
-#define DOSE2 5
+#define DOSE4 4
+#define DOSE5 5
 
 #define EIN 1
 #define AUS 0
