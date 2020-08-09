@@ -2,6 +2,8 @@
 Sammlung von Funktionen um einen Conrad RSL FunkSchalter zu schalten
 
 Getestet mit einem Particle Photon am 21.12.2015
+Getestet mit einem ESP32 NodeMCU am 27.10.2019
+Getestet mit Arduino Nano am 09.08.2020 : replaced int by long
 
 Der Datenpin des 433MHz Senders wird mit dpin verbunden
 
@@ -9,8 +11,31 @@ Copyright : Carsten Lueck, df3xc@web.de
 
 --------------------------------------------------------------------*/
 
-#define PHOTON // die Hardware ist ein Particle Photon
+/*--------------------------------------------------------------------
 
+Die Tabelle (ein zwei-dimensionales array) codes:
+
+Erste Spalte  : Codes zum ausschalten
+Zweite Spalte : Codes zum einschalten
+--------------------------------------------------------------------*/
+
+unsigned long codes[2][6] = {
+  { 0,
+    352633047,    // Wandschalter links aus
+    218415319,    // Wandschalter rechts aus
+    2176853504,   // Fernbedienung  #1520000979 Taster 1 aus
+    784344576,    // Fernbedienung  #1520000979 Taster 2 aus
+    515909120 },  // Fernbedienung  #1520000979 Taster 3 aus
+  { 0,
+    419741911,    // Wandschalter links ein
+    84197591,     // Wandschalter rechts ein
+    2394957312,   // Fernbedienung  #1520000979 Taster 1 ein
+    650126848,    // Fernbedienung  #1520000979 Taster 2 ein
+    381691392 }   // Fernbedienung  #1520000979 Taster 3 ein
+};
+
+
+//#define PHOTON
 
 #ifdef PHOTON
   #include "application.h"
@@ -183,8 +208,36 @@ The next value sets transmitter pin HIGH
     conrad_rsl_transmit(&tx_code[0]);
   }
 
+/*------------------------------------------------------------------------------
+ Einen Funkschalter ein- oder ausschalten
+------------------------------------------------------------------------------*/
 
+  void conrad_rsl_switch_code ( int which, int state )
+  {
 
+    unsigned long code = 0;
 
+    if (which>5)
+    {
+      Serial.println(" ERROR which not valid ");
+    }
 
+    if (state>1)
+    {
+      Serial.println(" ERROR state not valid ");
+    }
 
+    code = codes[state][which];
+
+    if (code != 0)
+    {
+      Serial.print("Sende Code : ");
+      Serial.println(code);
+      conrad_rsl_send(code,430,1150);
+    }
+    else
+    {
+      Serial.print(" Fehler : konnte Code nicht finden ");
+    }
+
+  }
