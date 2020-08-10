@@ -23,15 +23,15 @@ unsigned long codes[2][6] = {
   { 0,
     352633047,    // Wandschalter links aus
     218415319,    // Wandschalter rechts aus
-    2176853504,   // Fernbedienung  #1520000979 Taster 1 aus
-    784344576,    // Fernbedienung  #1520000979 Taster 2 aus
-    515909120 },  // Fernbedienung  #1520000979 Taster 3 aus
+    2176853504,   // Fernbedienung  #1520000979  Gruppe 1 Taster 1 aus 
+    2931828224,   // Fernbedienung  #1520000979  Gruppe 1 Taster 2 aus 
+    2747278848 }, // Fernbedienung  #1520000979  Gruppe 1 Taster 3 aus 
   { 0,
     419741911,    // Wandschalter links ein
     84197591,     // Wandschalter rechts ein
-    2394957312,   // Fernbedienung  #1520000979 Taster 1 ein
-    650126848,    // Fernbedienung  #1520000979 Taster 2 ein
-    381691392 }   // Fernbedienung  #1520000979 Taster 3 ein
+    2394957312,   // Fernbedienung  #1520000979  Gruppe 1 Taster 1 ein
+    2797610496,   // Fernbedienung  #1520000979  Gruppe 1 Taster 2 ein
+    2529175040 }  // Fernbedienung  #1520000979  Gruppe 1 Taster 3 ein
 };
 
 
@@ -42,6 +42,10 @@ unsigned long codes[2][6] = {
 #else
   #include "Arduino.h"
   #include "Print.h"
+#endif
+
+#ifdef ESP32 // wird durch die IDE definiert wenn das Board ausgewaehlt wird
+//#error Na sowas
 #endif
 
 #include "rsl_switch.h"
@@ -57,7 +61,7 @@ unsigned long codes[2][6] = {
 #ifdef PHOTON
 int dpin = D1;
 #else
-int dpin = 10;
+int dpin = 4;
 #endif
 
 
@@ -182,8 +186,10 @@ The next value sets transmitter pin HIGH
     int k = 1;
     int tx_code[70];  // speicher tx code sequenz
 
-    Serial.println(code);
-
+    Serial.print(" TX code ");
+    Serial.print(code);
+    Serial.print(" : ");
+    
     memset(tx_code,0,64);
     tx_code[0]=64;   // die laenge des tx codes
 
@@ -212,7 +218,7 @@ The next value sets transmitter pin HIGH
  Einen Funkschalter ein- oder ausschalten
 ------------------------------------------------------------------------------*/
 
-  void conrad_rsl_switch_code ( int which, int state )
+  void conrad_rsl_set_switch ( int which, int state )
   {
 
     unsigned long code = 0;
