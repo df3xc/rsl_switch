@@ -19,20 +19,31 @@ Erste Spalte  : Codes zum ausschalten
 Zweite Spalte : Codes zum einschalten
 --------------------------------------------------------------------*/
 
-unsigned long codes[2][6] = {
-  { 0,
-    352633047,    // Wandschalter links aus
-    218415319,    // Wandschalter rechts aus
-    2176853504,   // Fernbedienung  #1520000979  Gruppe 1 Taster 1 aus 
-    2931828224,   // Fernbedienung  #1520000979  Gruppe 1 Taster 2 aus 
-    2747278848 }, // Fernbedienung  #1520000979  Gruppe 1 Taster 3 aus 
-  { 0,
-    419741911,    // Wandschalter links ein
-    84197591,     // Wandschalter rechts ein
-    2394957312,   // Fernbedienung  #1520000979  Gruppe 1 Taster 1 ein
-    2797610496,   // Fernbedienung  #1520000979  Gruppe 1 Taster 2 ein
-    2529175040 }  // Fernbedienung  #1520000979  Gruppe 1 Taster 3 ein
+unsigned int codes[2][10] = {
+	{ 0,
+	352633047,    // Wandschalter links aus
+	218415319,    // Wandschalter rechts aus
+	29369856,     // Fernbedienung  #1520000979 Gruppe 1 Taster 1 aus
+	784344576,    // Fernbedienung  #1520000979 Gruppe 1 Taster 2 aus
+	515909120,	  // Fernbedienung  #1520000979 Gruppe 1 Taster 3 aus
+	230696448,    // Fernbedienung  #1520000979 Gruppe 2 Taster 1 aus
+	633349632,    // Fernbedienung  #1520000979 Gruppe 2 Taster 2 aus
+	364914176,	  // Fernbedienung  #1520000979 Gruppe 2 Taster 3 aus	
+	599795200	    // Fernbedienung  #1520000979 alle Dosen aller Gruppen aus
+	},  
+	{ 0,
+	419741911,    // Wandschalter links ein
+	84197591,     // Wandschalter rechts ein
+	247473664,    // Fernbedienung  #1520000979 Gruppe 1 Taster 1 ein
+	650126848,    // Fernbedienung  #1520000979 Gruppe 1 Taster 2 ein
+	381691392,    // Fernbedienung  #1520000979 Gruppe 1 Taster 3 ein 
+	96478720,     // Fernbedienung  #1520000979 Gruppe 2 Taster 1 ein
+	700458496,    // Fernbedienung  #1520000979 Gruppe 2 Taster 2 ein
+	432023040,    // Fernbedienung  #1520000979 Gruppe 2 Taster 3 ein 
+  331359744     // Fernbedienung  #1520000979 alle Dosen aller Gruppen ein
+	}   
 };
+
 
 
 //#define PHOTON
@@ -223,7 +234,7 @@ The next value sets transmitter pin HIGH
 
     unsigned long code = 0;
 
-    if (which>5)
+    if (which>10)
     {
       Serial.println(" ERROR which not valid ");
     }
