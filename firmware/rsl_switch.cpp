@@ -23,11 +23,11 @@ unsigned int codes[2][10] = {
 	{ 0,          // erste Spalte
   	2176853504,   // Fernbedienung  #1520000979 Gruppe 1 Taster 1 aus
 	2931828224,   // Fernbedienung  #1520000979 Gruppe 1 Taster 2 aus
-	2663392768,	  // Fernbedienung  #1520000979 Gruppe 1 Taster 3 aus
+	2663392768,   // Fernbedienung  #1520000979 Gruppe 1 Taster 3 aus
 	2378180096,   // Fernbedienung  #1520000979 Gruppe 2 Taster 1 aus
 	2780833280,   // Fernbedienung  #1520000979 Gruppe 2 Taster 2 aus
-	2512397824,	  // Fernbedienung  #1520000979 Gruppe 2 Taster 3 aus	
-	2747278848,	  // Fernbedienung  #1520000979 alle Dosen aller Gruppen aus
+	2512397824,   // Fernbedienung  #1520000979 Gruppe 2 Taster 3 aus	
+	2747278848,   // Fernbedienung  #1520000979 alle Dosen aller Gruppen aus
 	2167330816,   // Fernbedienung  #1909000183 Gruppe 1 Taster 1 aus LUEFTER DUSCHE
  	2922305536    // Fernbedienung  #1909000183 Gruppe 1 Taster 2 aus LICHT DUSCHE
 	},  
@@ -38,7 +38,7 @@ unsigned int codes[2][10] = {
 	2243962368,   // Fernbedienung  #1520000979 Gruppe 2 Taster 1 ein
 	2847942144,   // Fernbedienung  #1520000979 Gruppe 2 Taster 2 ein
 	2579506688,   // Fernbedienung  #1520000979 Gruppe 2 Taster 3 ein 
-  	2478843392,    // Fernbedienung  #1520000979 alle Dosen aller Gruppen ein
+  	2478843392,   // Fernbedienung  #1520000979 alle Dosen aller Gruppen ein
 	2385434624,   // Fernbedienung  #1909000183 Gruppe 1 Taster 1 ein LUEFTER DUSCHE
 	2788087808    // Fernbedienung  #1909000183 Gruppe 1 Taster 2 ein LICHT DUSCHE
 	}   
