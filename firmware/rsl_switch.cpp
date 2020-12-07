@@ -20,29 +20,30 @@ Zweite Spalte : Codes zum einschalten
 --------------------------------------------------------------------*/
 
 unsigned int codes[2][10] = {
-	{ 0,
-	352633047,    // Wandschalter links aus
-	218415319,    // Wandschalter rechts aus
-	29369856,     // Fernbedienung  #1520000979 Gruppe 1 Taster 1 aus
-	784344576,    // Fernbedienung  #1520000979 Gruppe 1 Taster 2 aus
-	515909120,	  // Fernbedienung  #1520000979 Gruppe 1 Taster 3 aus
-	230696448,    // Fernbedienung  #1520000979 Gruppe 2 Taster 1 aus
-	633349632,    // Fernbedienung  #1520000979 Gruppe 2 Taster 2 aus
-	364914176,	  // Fernbedienung  #1520000979 Gruppe 2 Taster 3 aus	
-	599795200	    // Fernbedienung  #1520000979 alle Dosen aller Gruppen aus
+	{ 0,          // erste Spalte
+  	2176853504,   // Fernbedienung  #1520000979 Gruppe 1 Taster 1 aus
+	2931828224,   // Fernbedienung  #1520000979 Gruppe 1 Taster 2 aus
+	2663392768,	  // Fernbedienung  #1520000979 Gruppe 1 Taster 3 aus
+	2378180096,   // Fernbedienung  #1520000979 Gruppe 2 Taster 1 aus
+	2780833280,   // Fernbedienung  #1520000979 Gruppe 2 Taster 2 aus
+	2512397824,	  // Fernbedienung  #1520000979 Gruppe 2 Taster 3 aus	
+	2747278848,	  // Fernbedienung  #1520000979 alle Dosen aller Gruppen aus
+	2167330816,   // Fernbedienung  #1909000183 Gruppe 1 Taster 1 aus LUEFTER DUSCHE
+ 	2922305536    // Fernbedienung  #1909000183 Gruppe 1 Taster 2 aus LICHT DUSCHE
 	},  
-	{ 0,
-	419741911,    // Wandschalter links ein
-	84197591,     // Wandschalter rechts ein
-	247473664,    // Fernbedienung  #1520000979 Gruppe 1 Taster 1 ein
-	650126848,    // Fernbedienung  #1520000979 Gruppe 1 Taster 2 ein
-	381691392,    // Fernbedienung  #1520000979 Gruppe 1 Taster 3 ein 
-	96478720,     // Fernbedienung  #1520000979 Gruppe 2 Taster 1 ein
-	700458496,    // Fernbedienung  #1520000979 Gruppe 2 Taster 2 ein
-	432023040,    // Fernbedienung  #1520000979 Gruppe 2 Taster 3 ein 
-  331359744     // Fernbedienung  #1520000979 alle Dosen aller Gruppen ein
+	{ 0,          // zweite Spalte
+	2394957312,   // Fernbedienung  #1520000979 Gruppe 1 Taster 1 ein
+	2797610496,   // Fernbedienung  #1520000979 Gruppe 1 Taster 2 ein
+	2529175040,   // Fernbedienung  #1520000979 Gruppe 1 Taster 3 ein 
+	2243962368,   // Fernbedienung  #1520000979 Gruppe 2 Taster 1 ein
+	2847942144,   // Fernbedienung  #1520000979 Gruppe 2 Taster 2 ein
+	2579506688,   // Fernbedienung  #1520000979 Gruppe 2 Taster 3 ein 
+  	2478843392,    // Fernbedienung  #1520000979 alle Dosen aller Gruppen ein
+	2385434624,   // Fernbedienung  #1909000183 Gruppe 1 Taster 1 ein LUEFTER DUSCHE
+	2788087808    // Fernbedienung  #1909000183 Gruppe 1 Taster 2 ein LICHT DUSCHE
 	}   
 };
+
 
 
 
